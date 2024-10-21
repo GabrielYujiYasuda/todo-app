@@ -1,7 +1,6 @@
 package com.example.myapplication.features.feature_task.domain.use_case
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.features.feature_task.data.repository.TaskRepositoryImpl
@@ -13,17 +12,20 @@ import java.util.Date
 
 class TodoViewModel : ViewModel() {
 
-    private var _taskList = MutableLiveData<List<TaskOutput>>()
-    val taskList: LiveData<List<TaskOutput>> get() = _taskList
+    // Use LiveData and data has got to be used both in Composable and Activities
+//    private val _taskList = MutableLiveData<List<TaskOutput>>()
+//    val taskList: LiveData<List<TaskOutput>> get() = _taskList
 
-    val taskRepository = TaskRepositoryImpl()
+    val taskList = mutableStateOf<List<TaskOutput>>(emptyList())
+    private val taskRepository = TaskRepositoryImpl()
+
     init {
         getAllTodo()
     }
 
     private fun getAllTodo() {
         viewModelScope.launch {
-            _taskList.value = taskRepository.getAllTasks().reversed()
+            taskList.value = taskRepository.getAllTasks().reversed()
         }
     }
 

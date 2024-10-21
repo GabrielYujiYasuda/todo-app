@@ -40,7 +40,7 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TodoListPage(viewModel: TodoViewModel) {
-    val taskList by viewModel.taskList.observeAsState()
+    val taskList by viewModel.taskList
 
     var inputText by remember {
         mutableStateOf("")

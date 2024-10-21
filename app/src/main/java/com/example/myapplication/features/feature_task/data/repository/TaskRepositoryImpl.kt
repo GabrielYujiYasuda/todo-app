@@ -23,7 +23,6 @@ class TaskRepositoryImpl {
     }
 
     suspend fun addTask(newTask: AddTaskInput) {
-
         try {
             taskService.addTask(newTask)
         } catch (e: Exception){

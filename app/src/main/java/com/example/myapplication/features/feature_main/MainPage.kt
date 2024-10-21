@@ -32,7 +32,7 @@ import com.example.myapplication.features.feature_task.presentation.tasks.compon
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainPage(viewModel: TodoViewModel) {
-    val taskList by viewModel.taskList.observeAsState()
+    val taskList by viewModel.taskList
 
     val navItemList = listOf(
         NavItem("Home", Icons.Default.Home, 0),
